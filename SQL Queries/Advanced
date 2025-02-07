@@ -1,14 +1,24 @@
 ~Average feedback score for each product:
 SELECT ProductName, AVG(FeedbackScore) AS AverageFeedback
-FROM Transactions
+FROM assessment_dataset
 GROUP BY ProductName;
+= Apple 3
+  Laptop 2.99
+  notebook 3
+  sofa 3
+  t-shirt 2.99
 
 ~Cities with the highest transaction amounts:
 SELECT City, SUM(TransactionAmount) AS TotalTransactionAmount
-FROM Transactions
+FROM assessment_dataset
 GROUP BY City
 ORDER BY TotalTransactionAmount DESC
 LIMIT 5;
+= kolkata 1027325507.51
+  ahmedabad 1023675900.25
+  banglore 1022379945.89
+  pune 1022136461.28
+  chennai 1022122710.6
 
 ~Total number of transactions by age group:
 SELECT 
@@ -21,13 +31,21 @@ SELECT
     ELSE 'Unknown'
   END AS AgeGroup,
   COUNT(*) AS TotalTransactions
-FROM Transactions
+FROM assessment_dataset
 GROUP BY AgeGroup;
+=
+  20-30 86538
+  31-40 79225
+  41-50 79133
+  51-60 79244
+  60+  110117
+ unknown 65744
 
 ~Returened Transactions
 SELECT SUM(TransactionAmount) AS TotalRevenueReturned
-FROM Transactions
+FROM assessment_dataset
 WHERE Returned = 'Yes';
+= 5096210659.81
 
 
 
