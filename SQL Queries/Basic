@@ -1,1 +1,23 @@
-aa
+~Total transaction amount:
+SELECT SUM(TransactionAmount) FROM Transactions;
+
+~Average transaction amount:
+SELECT AVG(TransactionAmount) FROM Transactions;
+
+~Total transaction amount for each region:
+SELECT Region, SUM(TransactionAmount) AS TotalTransactionAmount
+FROM Transactions
+GROUP BY Region;
+
+~Most popular product
+SELECT ProductName, SUM(Quantity) AS TotalQuantitySold
+FROM Transactions
+GROUP BY ProductName
+ORDER BY TotalQuantitySold DESC
+LIMIT 1;
+
+~In-Store vs Online transactions
+SELECT StoreType, COUNT(*) AS TransactionCount
+FROM Transactions
+GROUP BY StoreType;
+
