@@ -1,23 +1,33 @@
 ~Total transaction amount:
-SELECT SUM(TransactionAmount) FROM Transactions;
+SELECT SUM(TransactionAmount) FROM assessment_dataset;
+=10202662960.19
 
 ~Average transaction amount:
-SELECT AVG(TransactionAmount) FROM Transactions;
+SELECT AVG(TransactionAmount) FROM assessment_dataset;
+=20405.28
 
 ~Total transaction amount for each region:
 SELECT Region, SUM(TransactionAmount) AS TotalTransactionAmount
-FROM Transactions
+FROM assessment_dataset 
 GROUP BY Region;
+=    East = 2654969082.59
+     west = 2159911845.88
+     north = 2171502697.87
+     south = 3177273109.38
 
-~Most popular product
+~Most popular product:
 SELECT ProductName, SUM(Quantity) AS TotalQuantitySold
-FROM Transactions
+FROM assessment_dataset
 GROUP BY ProductName
 ORDER BY TotalQuantitySold DESC
 LIMIT 1;
+= Apple 2296713(quantity sold)
 
-~In-Store vs Online transactions
+~In-Store vs Online transactions:
 SELECT StoreType, COUNT(*) AS TransactionCount
-FROM Transactions
+FROM assessment_dataset
 GROUP BY StoreType;
+= in-store 224782
+  online 225218
+
 
