@@ -1,0 +1,33 @@
+~Average feedback score for each product:
+SELECT ProductName, AVG(FeedbackScore) AS AverageFeedback
+FROM Transactions
+GROUP BY ProductName;
+
+~Cities with the highest transaction amounts:
+SELECT City, SUM(TransactionAmount) AS TotalTransactionAmount
+FROM Transactions
+GROUP BY City
+ORDER BY TotalTransactionAmount DESC
+LIMIT 5;
+
+~Total number of transactions by age group:
+SELECT 
+  CASE
+    WHEN CustomerAge BETWEEN 20 AND 30 THEN '20-30'
+    WHEN CustomerAge BETWEEN 31 AND 40 THEN '31-40'
+    WHEN CustomerAge BETWEEN 41 AND 50 THEN '41-50'
+    WHEN CustomerAge BETWEEN 51 AND 60 THEN '51-60'
+    WHEN CustomerAge > 60 THEN '60+'
+    ELSE 'Unknown'
+  END AS AgeGroup,
+  COUNT(*) AS TotalTransactions
+FROM Transactions
+GROUP BY AgeGroup;
+
+~Returened Transactions
+SELECT SUM(TransactionAmount) AS TotalRevenueReturned
+FROM Transactions
+WHERE Returned = 'Yes';
+
+
+
